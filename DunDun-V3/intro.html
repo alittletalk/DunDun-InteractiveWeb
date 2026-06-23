@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intro - Stacking Blocks</title>
+  <style>
+    body { margin: 0; overflow-x: hidden; background-color: #ffffff; }
+    #canvas-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1; /* Canvas in background/middle, content on top if needed, but here we just want to see the canvas */
+    }
+    /* A tall element to enable scrolling */
+    #scroll-track {
+      height: 900vh; /* Increased height to ensure enough space for images without overlap */
+      position: relative;
+      z-index: 2; /* Content on top of canvas */
+      pointer-events: none; /* Allow clicks to pass through to body/canvas if needed, but we want images to be clickable */
+    }
+    
+    /* Images in the scroll track */
+    .scroll-image {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      max-width: 95vw; /* Increased from 80vw */
+      max-height: 95vh; /* Increased from 80vh */
+      width: auto;
+      height: auto;
+      pointer-events: auto; /* Enable interaction with images */
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div id="canvas-container"></div>
+  
+  <div id="scroll-track">
+    <!-- Images 0 to 7 distributed along the scroll track -->
+    <!-- Image 0 at top, top-aligned to avoid cutoff -->
+    <img src="./public/images/0.png" class="scroll-image" style="top: 2%; transform: translateX(-50%);" alt="Image 0">
+    
+    <!-- Increased spacing to prevent overlap between Image 0 and Image 1 -->
+    <img src="./public/images/1.png" class="scroll-image" style="top: 20%;" alt="Image 1">
+    <img src="./public/images/2.png" class="scroll-image" style="top: 32%;" alt="Image 2">
+    <img src="./public/images/3.png" class="scroll-image" style="top: 44%;" alt="Image 3">
+    <img src="./public/images/4.png" class="scroll-image" style="top: 56%;" alt="Image 4">
+    <img src="./public/images/5.png" class="scroll-image" style="top: 68%;" alt="Image 5">
+    <img src="./public/images/6.png" class="scroll-image" style="top: 80%;" alt="Image 6">
+    
+    <!-- Image 7 at the end -->
+    <a href="index.html">
+      <img src="./public/images/7.png" class="scroll-image" style="top: 92%; cursor: pointer;" alt="Image 7">
+    </a>
+  </div>
+  <script type="module" src="./src/intro.js"></script>
+</body>
+</html>
