@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rehoming DunDun</title>
+    <!-- 引入 Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <!-- 引入像素风字体 (仅用于数据装饰) -->
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    
+  <link rel="stylesheet" crossorigin href="/assets/index-wb9VdGrJ.css">
+</head>
+<body>
+
+    <!-- Intro: full-screen hero with big DunDun model -->
+    <section id="intro" class="intro-section">
+        <div class="intro-content">
+            <h1 class="intro-title">Meet DunDun</h1>
+            <p class="intro-sub">A little stool with a big story — scroll down to adopt</p>
+            <div id="intro-canvas" class="intro-canvas" aria-hidden="true"></div>
+            <div class="scroll-hint">Scroll ↓</div>
+        </div>
+    </section>
+
+
+    <div id="app-container">
+        <!-- 头部 -->
+        <header class="header-area">
+            <div>
+                <h1 class="main-title">Rehoming DunDun</h1>
+                <div style="font-size: 1.8vh; font-weight: bold; margin-top: 0.5vh;">A Little Stool's Journey</div>
+            </div>
+            <div class="sub-title">
+                STATUS: ONLINE
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- 左侧：目录 -->
+            <div class="panel-left">
+                <div class="panel-header">
+                    <span>Index / Models</span>
+                    <span style="font-family: 'VT323'">LIB_V1.0</span>
+                </div>
+                
+                <div id="grid-container">
+                    <!-- JS 生成网格项 -->
+                </div>
+
+                <div class="dameng-watermark">
+                    <span class="dameng-en">DAMENG</span>
+                    <span class="dameng-cn">大孟村</span>
+                </div>
+            </div>
+
+            <!-- 右侧：领养操作台 -->
+            <div class="panel-right">
+                <div class="paper-sheet">
+                    <div style="width: 100%; max-width: 80%;">
+                        <div class="section-title">Adoption Desk</div>
+
+                        <div id="drop-zone">
+                            <span id="drop-text">
+                                Drag Model Here<br>
+                                <span style="font-size: 1.5vh; font-weight: normal; margin-top: 0.5vh; display:block;">(Waiting for Input)</span>
+                            </span>
+                            <div id="adopted-container" style="width: 100%; height: 100%; position: absolute; inset: 0; display: none;"></div>
+                        </div>
+
+                        <button id="btn-adopt" class="brutalist-btn" disabled>
+                            That's My DunDun!
+                        </button>
+                        <button id="btn-reset" class="brutalist-btn secondary" onclick="location.reload()">
+                            Choose Another One
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 弹窗：信息登记表 -->
+    <div id="modal" class="hidden">
+        <div class="modal-box" id="modal-content">
+            <!-- 替换为白色正方体图标 (SVG) -->
+            <svg class="cube-icon" viewBox="0 0 100 100" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <!-- stroke-width changed from 3 to 2 -->
+                <!-- 立方体外轮廓 -->
+                <path d="M25 25 L75 25 L75 75 L25 75 Z" fill="white"/>
+                <!-- 侧面透视线 (伪3D) -->
+                <path d="M25 25 L40 10 L90 10 L75 25" />
+                <path d="M90 10 L90 60 L75 75" />
+            </svg>
+            
+            <h2 style="font-size: 4vh; text-transform: uppercase; margin: 1vh 0; border-bottom: var(--line-width) solid black; padding-bottom: 1vh;">Almost There!</h2>
+            <p style="font-size: 1.8vh; font-weight: bold; margin-bottom: 2vh; line-height: 1.4;">
+                Please leave your contact info.<br>
+                DunDun will contact you shortly.
+            </p>
+            
+            <form id="adoption-form" onsubmit="handleAdoptionSubmit(event)">
+                <input type="text" class="brutalist-input" placeholder="YOUR NAME" required>
+                <input type="text" class="brutalist-input" placeholder="EMAIL OR PHONE" required>
+                <button type="submit" class="brutalist-btn" style="margin-top: 1vh;">Submit & Wait</button>
+            </form>
+            
+            <button class="brutalist-btn secondary" onclick="closeModal()" style="font-size: 1.6vh; padding: 1vh; margin-top: 0px;">Cancel</button>
+        </div>
+    </div>
+
+    <script src="./src/page.js" defer></script>
+</body>
+</html>
